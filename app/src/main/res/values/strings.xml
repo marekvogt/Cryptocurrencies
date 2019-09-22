@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Cryptocurrencies</string>
+    <string name="e_unknown_error">Unknown error</string>
+</resources>

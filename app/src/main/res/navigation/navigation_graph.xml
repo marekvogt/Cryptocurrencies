@@ -1,0 +1,11 @@
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@+id/cryptoCurrencyListFragment">
+
+    <fragment
+        android:id="@+id/cryptoCurrencyListFragment"
+        android:name="pl.marekvogt.cryptocurrency.ui.list.CryptoCurrencyListFragment">
+    </fragment>
+
+</navigation>
