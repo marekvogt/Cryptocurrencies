@@ -14,10 +14,11 @@ import java.util.*
 
 
 @Module
-class CryptoCurrencyListModule {
+object CryptoCurrencyListModule {
 
     @Provides
     @FragmentScope
+    @JvmStatic
     fun provideCryptoCurrencyMapper(
         context: Context,
         moneyFormatter: MoneyFormatter,
@@ -26,10 +27,12 @@ class CryptoCurrencyListModule {
 
     @Provides
     @FragmentScope
+    @JvmStatic
     fun provideCryptoCurrencyRateAdapter(): CryptoCurrencyListAdapter = CryptoCurrencyListAdapter()
 
     @Provides
     @IntoMap
+    @JvmStatic
     @ViewModelKey(CryptoCurrencyListViewModel::class)
     fun provideViewModel(
         cryptoCurrenciesRepository: CryptoCurrenciesRepository,

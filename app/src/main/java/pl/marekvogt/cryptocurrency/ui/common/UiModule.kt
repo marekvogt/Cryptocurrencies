@@ -9,12 +9,14 @@ import pl.marekvogt.cryptocurrency.ui.common.formatter.CryptoCurrencyPriceFormat
 import pl.marekvogt.cryptocurrency.ui.common.formatter.MoneyFormatter
 
 @Module
-class UiModule {
+object UiModule {
 
     @Provides
+    @JvmStatic
     fun provideMoneyFormatter(): MoneyFormatter = CryptoCurrencyPriceFormatter()
 
     @Provides
+    @JvmStatic
     fun provideErrorMessageResolver(
         context: Context
     ): ErrorMessageResolver = DefaultErrorMessageResolver(context)

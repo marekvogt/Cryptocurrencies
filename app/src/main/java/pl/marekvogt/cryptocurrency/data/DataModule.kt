@@ -7,10 +7,11 @@ import pl.marekvogt.cryptocurrency.domain.repository.CryptoCurrenciesRepository
 import javax.inject.Singleton
 
 @Module
-class DataModule {
+object DataModule {
 
     @Singleton
     @Provides
+    @JvmStatic
     fun provideCryptoCurrenciesRepository(
         service: CryptoCurrenciesService
     ): CryptoCurrenciesRepository = CryptoCurrenciesRestRepository(service)
