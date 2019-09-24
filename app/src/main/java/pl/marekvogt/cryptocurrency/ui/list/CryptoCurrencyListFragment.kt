@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_currency_list.*
@@ -13,7 +15,7 @@ import pl.marekvogt.cryptocurrency.R
 import javax.inject.Inject
 import pl.marekvogt.cryptocurrency.databinding.FragmentCurrencyListBinding
 import pl.marekvogt.cryptocurrency.ui.common.extension.showMessage
-
+import pl.marekvogt.cryptocurrency.ui.detail.CryptoCurrencyDetailsFragment
 
 class CryptoCurrencyListFragment : DaggerFragment() {
 
@@ -35,13 +37,20 @@ class CryptoCurrencyListFragment : DaggerFragment() {
     }
 
     private fun setupView() {
+        currencyRatesAdapter.onItemClicked = { viewEntity, imgCurrencySymbol ->
+            findNavController().navigate(
+                R.id.actionNavigateToDetails,
+                CryptoCurrencyDetailsFragment.createExtras(viewEntity.iconRes, imgCurrencySymbol.transitionName),
+                null,
+                FragmentNavigatorExtras(imgCurrencySymbol to imgCurrencySymbol.transitionName)
+            )
+        }
         rwCurrencyRates.adapter = currencyRatesAdapter
         rwCurrencyRates.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
     }
 
     private fun setupViewModel() {
-        viewModel.loadCryptoCurrencyRates()
-        viewModel.viewState.observe(viewLifecycleOwner, Observer { viewState ->
+        viewModel.getViewState().observe(viewLifecycleOwner, Observer { viewState ->
             binding.viewState = viewState
             currencyRatesAdapter.submitList(viewState.cryptoRates)
             viewState.errorMessageEvent?.getContentIfNotHandled()?.let { errorMessage ->

@@ -18,14 +18,22 @@ class CryptoCurrencyListViewModel @Inject constructor(
     private val errorMessageResolver: ErrorMessageResolver
 ) : BaseViewModel() {
 
-    val viewState: LiveData<CryptoCurrencyListViewState> = MutableLiveData()
+    private lateinit var viewState: LiveData<CryptoCurrencyListViewState>
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         val errorMessage = errorMessageResolver.resolve(throwable)
         viewState.updateValue(CryptoCurrencyListViewState(errorMessageEvent = Event(errorMessage)))
     }
 
-    fun loadCryptoCurrencyRates() {
+    fun getViewState(): LiveData<CryptoCurrencyListViewState> {
+        if (!::viewState.isInitialized) {
+            viewState = MutableLiveData()
+            loadCryptoCurrencyRates()
+        }
+        return viewState
+    }
+
+    private fun loadCryptoCurrencyRates() {
         viewState.updateValue(CryptoCurrencyListViewState(isLoading = true))
         fetchCurrencyRates()
     }

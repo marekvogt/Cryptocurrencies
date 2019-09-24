@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import pl.marekvogt.cryptocurrency.databinding.ListItemCryptoCurrencyBinding
 import pl.marekvogt.cryptocurrency.R
@@ -12,6 +13,8 @@ import pl.marekvogt.cryptocurrency.R
 
 class CryptoCurrencyListAdapter
     : ListAdapter<CryptoCurrencyRateViewEntity, CryptoCurrencyListAdapter.ViewHolder>(CurrencyRateViewEntityDiff) {
+
+    var onItemClicked: ((viewEntity: CryptoCurrencyRateViewEntity, imgCurrencySymbol: ImageView) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val listItemBinding = DataBindingUtil.inflate<ListItemCryptoCurrencyBinding>(
@@ -23,6 +26,9 @@ class CryptoCurrencyListAdapter
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.viewDataBinding.currencyRate = getItem(position)
+        holder.viewDataBinding.layoutRoot.setOnClickListener {
+            onItemClicked?.invoke(getItem(position), holder.viewDataBinding.imgCurrencyIcon)
+        }
     }
 
     class ViewHolder(

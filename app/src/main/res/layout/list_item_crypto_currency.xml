@@ -11,6 +11,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutRoot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="64dp"
@@ -26,6 +27,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@{currencyRate.iconRes}"
+            android:transitionName="@{currencyRate.currency.name}"
             tools:src="@drawable/btc" />
 
         <androidx.appcompat.widget.AppCompatTextView
