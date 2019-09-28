@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Cryptocurrencies</string>
     <string name="e_unknown_error">Unknown error</string>
+    <string name="l_name">Name</string>
+    <string name="l_symbol">Symbol</string>
+    <string name="l_price">Price</string>
 </resources>

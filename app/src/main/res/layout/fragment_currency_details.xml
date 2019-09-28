@@ -10,11 +10,20 @@
         android:layout_width="128dp"
         android:layout_height="128dp"
         android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
         android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/btc" />
+
+    <pl.marekvogt.cryptocurrency.ui.common.view.LabelValueListView
+        android:id="@+id/viewLabelValueList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgCurrencyIcon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

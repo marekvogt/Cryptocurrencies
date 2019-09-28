@@ -2,4 +2,4 @@ package pl.marekvogt.cryptocurrency.ui.common.extension
 
 import android.os.Bundle
 
-fun Bundle.getIntOrNull(key: String) = getInt(key, Integer.MIN_VALUE).takeUnless { it == Integer.MIN_VALUE }
+inline fun <reified T> Bundle.getSerializable(key: String): T? = getSerializable(key) as? T

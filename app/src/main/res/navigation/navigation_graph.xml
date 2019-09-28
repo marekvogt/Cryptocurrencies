@@ -1,20 +1,27 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@+id/cryptoCurrencyListFragment">
 
     <fragment
         android:id="@+id/cryptoCurrencyListFragment"
         android:name="pl.marekvogt.cryptocurrency.ui.list.CryptoCurrencyListFragment"
-        android:label="@string/app_name">
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_currency_list">
 
         <action
             android:id="@+id/actionNavigateToDetails"
-            app:destination="@id/cryptoCurrencyDetailsFragment" />
+            app:destination="@id/cryptoCurrencyDetailsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
 
     </fragment>
 
     <fragment
         android:id="@+id/cryptoCurrencyDetailsFragment"
-        android:name="pl.marekvogt.cryptocurrency.ui.detail.CryptoCurrencyDetailsFragment" />
+        android:name="pl.marekvogt.cryptocurrency.ui.detail.CryptoCurrencyDetailsFragment"
+        tools:layout="@layout/fragment_currency_list" />
 
 </navigation>
