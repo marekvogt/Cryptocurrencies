@@ -7,8 +7,7 @@ import java.io.Serializable
 class CryptoCurrencyListViewState(
     val isLoading: Boolean = false,
     val isRefreshing: Boolean = false,
-    val cryptoRates: List<CryptoCurrencyRateViewEntity> = emptyList(),
-    val errorMessageEvent: Event<String>? = null
+    val cryptoRates: List<CryptoCurrencyRateViewEntity> = emptyList()
 )
 
 data class CryptoCurrencyRateViewEntity(

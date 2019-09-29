@@ -14,13 +14,17 @@ import kotlinx.android.synthetic.main.fragment_currency_list.*
 import pl.marekvogt.cryptocurrency.R
 import javax.inject.Inject
 import pl.marekvogt.cryptocurrency.databinding.FragmentCurrencyListBinding
+import pl.marekvogt.cryptocurrency.ui.common.extension.nonNull
+import pl.marekvogt.cryptocurrency.ui.common.extension.observeEvent
 import pl.marekvogt.cryptocurrency.ui.common.extension.showMessage
 import pl.marekvogt.cryptocurrency.ui.detail.CryptoCurrencyDetailsFragment
 
 class CryptoCurrencyListFragment : DaggerFragment() {
 
-    @Inject lateinit var viewModel: CryptoCurrencyListViewModel
-    @Inject lateinit var currencyRatesAdapter: CryptoCurrencyListAdapter
+    @Inject
+    lateinit var viewModel: CryptoCurrencyListViewModel
+    @Inject
+    lateinit var currencyRatesAdapter: CryptoCurrencyListAdapter
     private lateinit var binding: FragmentCurrencyListBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -50,13 +54,32 @@ class CryptoCurrencyListFragment : DaggerFragment() {
     }
 
     private fun setupViewModel() {
-        viewModel.getViewState().observe(viewLifecycleOwner, Observer { viewState ->
+        viewModel.getViewState().nonNull().observe(viewLifecycleOwner) { viewState ->
             binding.viewState = viewState
             currencyRatesAdapter.submitList(viewState.cryptoRates)
-            viewState.errorMessageEvent?.getContentIfNotHandled()?.let { errorMessage ->
-                layoutRoot showMessage errorMessage
-            }
-        })
+        }
+
+        viewModel.startLoadingAnimationEvent.observeEvent(viewLifecycleOwner) {
+            viewShimmerListPlaceholder.startShimmer()
+        }
+
+        viewModel.stopLoadingAnimationEvent.observeEvent(viewLifecycleOwner) {
+            viewShimmerListPlaceholder.stopShimmer()
+        }
+
+        viewModel.errorMessageEvent.observeEvent(viewLifecycleOwner) { errorMessage ->
+            layoutRoot showMessage errorMessage
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.startLoadingAnimationIfNeeded()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.stopLoadingAnimationIfNeeded()
     }
 
     override fun onDestroyView() {
