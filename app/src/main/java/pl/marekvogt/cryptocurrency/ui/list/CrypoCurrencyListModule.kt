@@ -7,7 +7,7 @@ import dagger.Provides
 import dagger.multibindings.IntoMap
 import pl.marekvogt.cryptocurrency.di.ViewModelKey
 import pl.marekvogt.cryptocurrency.di.scope.FragmentScope
-import pl.marekvogt.cryptocurrency.domain.repository.CryptoCurrenciesRepository
+import pl.marekvogt.cryptocurrency.domain.repository.CryptoCurrenciesCacheableRepository
 import pl.marekvogt.cryptocurrency.ui.common.error.ErrorMessageResolver
 import pl.marekvogt.cryptocurrency.ui.common.formatter.MoneyFormatter
 import java.util.*
@@ -35,7 +35,7 @@ object CryptoCurrencyListModule {
     @JvmStatic
     @ViewModelKey(CryptoCurrencyListViewModel::class)
     fun provideViewModel(
-        cryptoCurrenciesRepository: CryptoCurrenciesRepository,
+        cryptoCurrenciesRepository: CryptoCurrenciesCacheableRepository,
         cryptoCurrencyRateMapper: CryptoCurrencyRateMapper,
         errorMessageResolver: ErrorMessageResolver
     ): ViewModel = CryptoCurrencyListViewModel(cryptoCurrenciesRepository, cryptoCurrencyRateMapper, errorMessageResolver)

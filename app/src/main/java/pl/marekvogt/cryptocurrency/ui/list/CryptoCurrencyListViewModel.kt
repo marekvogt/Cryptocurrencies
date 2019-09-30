@@ -6,14 +6,14 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import pl.marekvogt.cryptocurrency.domain.model.CryptoCurrencyRate
-import pl.marekvogt.cryptocurrency.domain.repository.CryptoCurrenciesRepository
+import pl.marekvogt.cryptocurrency.domain.repository.CryptoCurrenciesCacheableRepository
 import pl.marekvogt.cryptocurrency.ui.common.error.ErrorMessageResolver
 import pl.marekvogt.cryptocurrency.ui.common.lifecycle.BaseViewModel
 import pl.marekvogt.cryptocurrency.ui.common.lifecycle.Event
 import javax.inject.Inject
 
 class CryptoCurrencyListViewModel @Inject constructor(
-    private val cryptoCurrenciesRepository: CryptoCurrenciesRepository,
+    private val cryptoCurrenciesRepository: CryptoCurrenciesCacheableRepository,
     private val cryptoCurrencyRateMapper: CryptoCurrencyRateMapper,
     private val errorMessageResolver: ErrorMessageResolver
 ) : BaseViewModel() {
@@ -45,6 +45,7 @@ class CryptoCurrencyListViewModel @Inject constructor(
 
     fun refreshCryptoCurrencyRates() {
         viewState.updateValue(CryptoCurrencyListViewState(isRefreshing = true))
+        cryptoCurrenciesRepository.invalidateCache()
         fetchCurrencyRates()
     }
 
