@@ -18,7 +18,16 @@ class LabelValueListView(
         )
     }
 
-    fun add(labelValue: LabelValue) {
+    fun bind(labelValues: List<LabelValue>) {
+        removeAllViews()
+        addAll(labelValues)
+    }
+
+    private fun addAll(labelValues: List<LabelValue>) {
+        labelValues.forEach { add(it) }
+    }
+
+    private fun add(labelValue: LabelValue) {
         addView(LabelValueView(context, attrs).apply {
             layoutParams = createLayoutParams(
                 horizontalMarginRes = R.dimen.layout_horizontal_spacing,
@@ -30,10 +39,6 @@ class LabelValueListView(
             layoutParams = createLayoutParams(horizontalMarginRes = R.dimen.divider_horizontal_spacing)
         })
 
-    }
-
-    fun addAll(labelValues: List<LabelValue>) {
-        labelValues.forEach { add(it) }
     }
 
     private fun createLayoutParams(@DimenRes horizontalMarginRes: Int?, @DimenRes verticalMarginRes: Int? = null) =

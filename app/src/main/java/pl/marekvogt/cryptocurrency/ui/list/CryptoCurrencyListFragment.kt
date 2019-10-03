@@ -5,7 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -18,14 +19,18 @@ import pl.marekvogt.cryptocurrency.ui.common.extension.nonNull
 import pl.marekvogt.cryptocurrency.ui.common.extension.observeEvent
 import pl.marekvogt.cryptocurrency.ui.common.extension.showMessage
 import pl.marekvogt.cryptocurrency.ui.detail.CryptoCurrencyDetailsFragment
+import javax.inject.Named
 
 class CryptoCurrencyListFragment : DaggerFragment() {
 
     @Inject
-    lateinit var viewModel: CryptoCurrencyListViewModel
+    @field:Named("ViewModelFactory.List")
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject
     lateinit var currencyRatesAdapter: CryptoCurrencyListAdapter
     private lateinit var binding: FragmentCurrencyListBinding
+
+    private val viewModel: CryptoCurrencyListViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_currency_list, container, false)

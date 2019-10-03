@@ -22,8 +22,7 @@ class LabelValueView(context: Context, attrs: AttributeSet) : LinearLayout(conte
     }
 }
 
-@Parcelize
 data class LabelValue(
     val label: String,
     val value: String
-): Parcelable
+)

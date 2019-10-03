@@ -1,16 +1,13 @@
 package pl.marekvogt.cryptocurrency.ui.list
 
 import android.content.Context
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import dagger.Module
 import dagger.Provides
-import dagger.multibindings.IntoMap
-import pl.marekvogt.cryptocurrency.di.ViewModelKey
 import pl.marekvogt.cryptocurrency.di.scope.FragmentScope
-import pl.marekvogt.cryptocurrency.domain.repository.CryptoCurrenciesCacheableRepository
-import pl.marekvogt.cryptocurrency.ui.common.error.ErrorMessageResolver
 import pl.marekvogt.cryptocurrency.ui.common.formatter.MoneyFormatter
 import java.util.*
+import javax.inject.Named
 
 
 @Module
@@ -31,12 +28,10 @@ object CryptoCurrencyListModule {
     fun provideCryptoCurrencyRateAdapter(): CryptoCurrencyListAdapter = CryptoCurrencyListAdapter()
 
     @Provides
-    @IntoMap
+    @FragmentScope
     @JvmStatic
-    @ViewModelKey(CryptoCurrencyListViewModel::class)
-    fun provideViewModel(
-        cryptoCurrenciesRepository: CryptoCurrenciesCacheableRepository,
-        cryptoCurrencyRateMapper: CryptoCurrencyRateMapper,
-        errorMessageResolver: ErrorMessageResolver
-    ): ViewModel = CryptoCurrencyListViewModel(cryptoCurrenciesRepository, cryptoCurrencyRateMapper, errorMessageResolver)
+    @Named("ViewModelFactory.List")
+    fun provideCryptoCurrencyListViewModelFactory(
+        cryptoCurrencyListViewModel: CryptoCurrencyListViewModel
+    ): ViewModelProvider.Factory = CryptoCurrencyListViewModelFactory(cryptoCurrencyListViewModel)
 }
