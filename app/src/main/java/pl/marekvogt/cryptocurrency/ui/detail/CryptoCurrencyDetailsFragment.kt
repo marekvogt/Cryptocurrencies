@@ -15,7 +15,6 @@ import pl.marekvogt.cryptocurrency.ui.common.extension.getSerializable
 import pl.marekvogt.cryptocurrency.ui.common.extension.nonNull
 import pl.marekvogt.cryptocurrency.ui.list.CryptoCurrencyRateViewEntity
 import javax.inject.Inject
-import javax.inject.Named
 
 
 private const val ARG_CURRENCY_VIEW_ENTITY = "arg-currency-view-entity"
@@ -24,7 +23,6 @@ private const val ARG_TRANSITION_NAME = "arg-transition-name"
 class CryptoCurrencyDetailsFragment : DaggerFragment() {
 
     @Inject
-    @field:Named("ViewModelFactory.Details")
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val viewModel: CryptoCurrencyDetailsViewModel by viewModels { viewModelFactory }

@@ -19,12 +19,10 @@ import pl.marekvogt.cryptocurrency.ui.common.extension.nonNull
 import pl.marekvogt.cryptocurrency.ui.common.extension.observeEvent
 import pl.marekvogt.cryptocurrency.ui.common.extension.showMessage
 import pl.marekvogt.cryptocurrency.ui.detail.CryptoCurrencyDetailsFragment
-import javax.inject.Named
 
 class CryptoCurrencyListFragment : DaggerFragment() {
 
     @Inject
-    @field:Named("ViewModelFactory.List")
     lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject
     lateinit var currencyRatesAdapter: CryptoCurrencyListAdapter

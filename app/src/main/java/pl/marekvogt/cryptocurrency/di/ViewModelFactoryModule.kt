@@ -6,7 +6,7 @@ import dagger.Module
 import pl.marekvogt.cryptocurrency.viewmodel.ViewModelFactory
 
 @Module
-interface ViewModelModule {
+interface ViewModelFactoryModule {
 
     @Binds
     fun viewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
