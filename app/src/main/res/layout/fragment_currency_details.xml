@@ -1,29 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/scene_currency_details">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgCurrencyIcon"
         android:layout_width="128dp"
         android:layout_height="128dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="20dp"
         android:tint="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/btc" />
 
-    <pl.marekvogt.cryptocurrency.ui.common.view.LabelValueListView
-        android:id="@+id/viewLabelValueList"
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgGrip"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:paddingStart="30dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="30dp"
+        android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imgCurrencyIcon" />
+        app:layout_constraintTop_toBottomOf="@id/imgCurrencyIcon"
+        app:srcCompat="@drawable/ic_arrow_up"
+        app:tint="@color/colorAccent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <pl.marekvogt.cryptocurrency.ui.common.view.Divider
+        android:id="@+id/viewDivider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/imgGrip" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewDivider">
+
+        <pl.marekvogt.cryptocurrency.ui.common.view.LabelValueListView
+            android:id="@+id/viewLabelValueList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </ScrollView>
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
