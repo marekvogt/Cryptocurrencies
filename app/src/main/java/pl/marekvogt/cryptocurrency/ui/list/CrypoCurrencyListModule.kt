@@ -24,11 +24,6 @@ object CryptoCurrencyListModule {
         locale: Locale
     ): CryptoCurrencyRateMapper = DefaultCryptoCurrencyRateMapper(context, moneyFormatter, locale)
 
-    @Provides
-    @FragmentScope
-    @JvmStatic
-    fun provideCryptoCurrencyRateAdapter(): CryptoCurrencyListAdapter = CryptoCurrencyListAdapter()
-
     @Module
     interface ViewModelProvider {
 

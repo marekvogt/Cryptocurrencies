@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_currency_list.*
 import pl.marekvogt.cryptocurrency.R
 import javax.inject.Inject
 import pl.marekvogt.cryptocurrency.databinding.FragmentCurrencyListBinding
+import pl.marekvogt.cryptocurrency.ui.common.autoCleared
 import pl.marekvogt.cryptocurrency.ui.common.extension.nonNull
 import pl.marekvogt.cryptocurrency.ui.common.extension.observeEvent
 import pl.marekvogt.cryptocurrency.ui.common.extension.showMessage
@@ -24,11 +25,11 @@ class CryptoCurrencyListFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    @Inject
-    lateinit var currencyRatesAdapter: CryptoCurrencyListAdapter
-    private lateinit var binding: FragmentCurrencyListBinding
 
     private val viewModel: CryptoCurrencyListViewModel by viewModels { viewModelFactory }
+
+    private var binding by autoCleared<FragmentCurrencyListBinding>()
+    private var currencyRatesAdapter by autoCleared<CryptoCurrencyListAdapter>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_currency_list, container, false)
@@ -44,6 +45,7 @@ class CryptoCurrencyListFragment : DaggerFragment() {
     }
 
     private fun setupView() {
+        currencyRatesAdapter = CryptoCurrencyListAdapter()
         currencyRatesAdapter.onItemClicked = { viewEntity, imgCurrencySymbol ->
             findNavController().navigate(
                 R.id.actionNavigateToDetails,
@@ -83,10 +85,5 @@ class CryptoCurrencyListFragment : DaggerFragment() {
     override fun onPause() {
         super.onPause()
         viewModel.stopLoadingAnimationIfNeeded()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        rwCurrencyRates.adapter = null
     }
 }
