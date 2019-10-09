@@ -78,15 +78,15 @@ class CryptoCurrencyRatesDeserializer : JsonDeserializer<CryptoCurrencyRates> {
         val weekPercentageChange = quoteData.getBigDecimal("percent_change_7d")
         return TrendHistory(
             hour = Trend(
-                percentageChange = hourPercentageChange,
+                percentageChange = hourPercentageChange.abs(),
                 direction = resolveTrendDirection(hourPercentageChange)
             ),
             day = Trend(
-                percentageChange = dayPercentageChange,
+                percentageChange = dayPercentageChange.abs(),
                 direction = resolveTrendDirection(dayPercentageChange)
             ),
             week = Trend(
-                percentageChange = weekPercentageChange,
+                percentageChange = weekPercentageChange.abs(),
                 direction = resolveTrendDirection(weekPercentageChange)
             )
 

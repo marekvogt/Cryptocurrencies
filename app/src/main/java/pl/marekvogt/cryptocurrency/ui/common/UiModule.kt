@@ -6,7 +6,9 @@ import dagger.Provides
 import pl.marekvogt.cryptocurrency.ui.common.error.DefaultErrorMessageResolver
 import pl.marekvogt.cryptocurrency.ui.common.error.ErrorMessageResolver
 import pl.marekvogt.cryptocurrency.ui.common.formatter.CryptoCurrencyPriceFormatter
+import pl.marekvogt.cryptocurrency.ui.common.formatter.DefaultTrendFormatter
 import pl.marekvogt.cryptocurrency.ui.common.formatter.MoneyFormatter
+import pl.marekvogt.cryptocurrency.ui.common.formatter.TrendFormatter
 
 @Module
 object UiModule {
@@ -20,4 +22,8 @@ object UiModule {
     fun provideErrorMessageResolver(
         context: Context
     ): ErrorMessageResolver = DefaultErrorMessageResolver(context)
+
+    @Provides
+    @JvmStatic
+    fun provideTrendFormatter(): TrendFormatter = DefaultTrendFormatter()
 }

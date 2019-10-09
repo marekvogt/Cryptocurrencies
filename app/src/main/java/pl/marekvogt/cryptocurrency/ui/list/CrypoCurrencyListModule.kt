@@ -9,6 +9,7 @@ import dagger.multibindings.IntoMap
 import pl.marekvogt.cryptocurrency.di.ViewModelKey
 import pl.marekvogt.cryptocurrency.di.scope.FragmentScope
 import pl.marekvogt.cryptocurrency.ui.common.formatter.MoneyFormatter
+import pl.marekvogt.cryptocurrency.ui.common.formatter.TrendFormatter
 import java.util.*
 
 
@@ -21,8 +22,14 @@ object CryptoCurrencyListModule {
     fun provideCryptoCurrencyMapper(
         context: Context,
         moneyFormatter: MoneyFormatter,
+        trendFormatter: TrendFormatter,
         locale: Locale
-    ): CryptoCurrencyRateMapper = DefaultCryptoCurrencyRateMapper(context, moneyFormatter, locale)
+    ): CryptoCurrencyRateMapper = DefaultCryptoCurrencyRateMapper(
+        context,
+        moneyFormatter,
+        trendFormatter,
+        locale
+    )
 
     @Module
     interface ViewModelProvider {
