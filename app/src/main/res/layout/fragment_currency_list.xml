@@ -6,10 +6,6 @@
     <data>
 
         <variable
-            name="viewState"
-            type="pl.marekvogt.cryptocurrency.ui.list.CryptoCurrencyListViewState" />
-
-        <variable
             name="viewModel"
             type="pl.marekvogt.cryptocurrency.ui.list.CryptoCurrencyListViewModel" />
     </data>
@@ -23,7 +19,7 @@
             android:id="@+id/viewShimmerListPlaceholder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="@{viewState.loading}"
+            android:visibility="@{viewModel.viewState.loading}"
             app:shimmer_duration="1000">
 
             <include
@@ -37,9 +33,9 @@
             android:id="@+id/layoutSwipe"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="@{!viewState.loading}"
+            android:visibility="@{!viewModel.viewState.loading}"
             app:onRefreshListener="@{viewModel::refreshCryptoCurrencyRates}"
-            app:refreshing="@{viewState.refreshing}">
+            app:refreshing="@{viewModel.viewState.refreshing}">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rwCurrencyRates"
