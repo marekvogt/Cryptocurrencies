@@ -56,6 +56,13 @@ class CryptoCurrencyListFragment : DaggerFragment() {
         }
         rwCurrencyRates.adapter = currencyRatesAdapter
         rwCurrencyRates.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+
+        postponeEnterTransition()
+        rwCurrencyRates.viewTreeObserver
+            .addOnPreDrawListener {
+                startPostponedEnterTransition()
+                true
+            }
     }
 
     private fun setupViewModel() {

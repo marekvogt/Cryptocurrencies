@@ -11,11 +11,7 @@
 
         <action
             android:id="@+id/actionNavigateToDetails"
-            app:destination="@id/cryptoCurrencyDetailsFragment"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/fade_out" />
+            app:destination="@id/cryptoCurrencyDetailsFragment" />
 
     </fragment>
 
