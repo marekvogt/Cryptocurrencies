@@ -19,7 +19,6 @@ import pl.marekvogt.cryptocurrency.ui.common.autoCleared
 import pl.marekvogt.cryptocurrency.ui.common.extension.nonNull
 import pl.marekvogt.cryptocurrency.ui.common.extension.observeEvent
 import pl.marekvogt.cryptocurrency.ui.common.extension.showMessage
-import pl.marekvogt.cryptocurrency.ui.detail.CryptoCurrencyDetailsFragment
 
 class CryptoCurrencyListFragment : DaggerFragment() {
 
@@ -48,9 +47,7 @@ class CryptoCurrencyListFragment : DaggerFragment() {
         currencyRatesAdapter = CryptoCurrencyListAdapter()
         currencyRatesAdapter.onItemClicked = { viewEntity, imgCurrencySymbol ->
             findNavController().navigate(
-                R.id.actionNavigateToDetails,
-                CryptoCurrencyDetailsFragment.createExtras(viewEntity, imgCurrencySymbol.transitionName),
-                null,
+                CryptoCurrencyListFragmentDirections.actionNavigateToDetails(viewEntity, imgCurrencySymbol.transitionName),
                 FragmentNavigatorExtras(imgCurrencySymbol to imgCurrencySymbol.transitionName)
             )
         }

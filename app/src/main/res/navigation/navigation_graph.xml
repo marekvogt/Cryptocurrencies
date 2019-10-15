@@ -18,6 +18,17 @@
     <fragment
         android:id="@+id/cryptoCurrencyDetailsFragment"
         android:name="pl.marekvogt.cryptocurrency.ui.detail.CryptoCurrencyDetailsFragment"
-        tools:layout="@layout/fragment_currency_list" />
+        tools:layout="@layout/fragment_currency_list">
+
+        <argument
+            android:name="currencyRateViewEntity"
+            app:argType="pl.marekvogt.cryptocurrency.ui.list.CryptoCurrencyRateViewEntity"
+            app:nullable="false" />
+        <argument
+            android:name="transitionName"
+            app:argType="string"
+            app:nullable="false" />
+
+    </fragment>
 
 </navigation>
