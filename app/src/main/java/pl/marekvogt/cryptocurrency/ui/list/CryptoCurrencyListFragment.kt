@@ -63,7 +63,9 @@ class CryptoCurrencyListFragment : DaggerFragment() {
     }
 
     private fun setupViewModel() {
-        viewModel.getViewState().nonNull().observe(viewLifecycleOwner) { viewState ->
+        viewModel.loadCryptoCurrencyRates()
+
+        viewModel.viewState.nonNull().observe(viewLifecycleOwner) { viewState ->
             currencyRatesAdapter.submitList(viewState.cryptoRates)
         }
 

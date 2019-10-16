@@ -1,10 +1,9 @@
 package pl.marekvogt.cryptocurrency.ui.list
 
 import pl.marekvogt.cryptocurrency.domain.model.CryptoCurrency
-import pl.marekvogt.cryptocurrency.ui.common.lifecycle.Event
 import java.io.Serializable
 
-class CryptoCurrencyListViewState(
+data class CryptoCurrencyListViewState(
     val isLoading: Boolean = false,
     val isRefreshing: Boolean = false,
     val cryptoRates: List<CryptoCurrencyRateViewEntity> = emptyList()

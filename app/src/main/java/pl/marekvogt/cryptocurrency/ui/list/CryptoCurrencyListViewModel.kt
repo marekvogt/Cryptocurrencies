@@ -22,31 +22,28 @@ class CryptoCurrencyListViewModel @Inject constructor(
     val stopLoadingAnimationEvent: LiveData<Event<Unit>> = MutableLiveData()
     val errorMessageEvent: LiveData<Event<String>> = MutableLiveData()
 
-    private lateinit var viewState: LiveData<CryptoCurrencyListViewState>
+    val viewState: LiveData<CryptoCurrencyListViewState> = MutableLiveData<CryptoCurrencyListViewState>().apply {
+        value = CryptoCurrencyListViewState(isLoading = true)
+    }
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         val errorMessage = errorMessageResolver.resolve(throwable)
+        startLoadingAnimationEvent.updateValue(Event(Unit))
         errorMessageEvent.updateValue(Event(errorMessage))
     }
 
-    fun getViewState(): LiveData<CryptoCurrencyListViewState> {
-        if (!::viewState.isInitialized) {
-            viewState = MutableLiveData()
-            loadCryptoCurrencyRates()
+    fun loadCryptoCurrencyRates() {
+        viewModelScope.launch(exceptionHandler) {
+            val cryptoRates = cryptoCurrenciesRepository.fetchAll()
+            viewState.updateValue(CryptoCurrencyListViewState(cryptoRates = cryptoRates.toViewEntities()))
+            stopLoadingAnimationEvent.updateValue(Event(Unit))
         }
-        return viewState
-    }
-
-    private fun loadCryptoCurrencyRates() {
-        viewState.updateValue(CryptoCurrencyListViewState(isLoading = true))
-        startLoadingAnimationEvent.updateValue(Event(Unit))
-        fetchCurrencyRates()
     }
 
     fun refreshCryptoCurrencyRates() {
         viewState.updateValue(CryptoCurrencyListViewState(isRefreshing = true))
         cryptoCurrenciesRepository.invalidateCache()
-        fetchCurrencyRates()
+        loadCryptoCurrencyRates()
     }
 
     fun startLoadingAnimationIfNeeded() {
@@ -57,14 +54,6 @@ class CryptoCurrencyListViewModel @Inject constructor(
 
     fun stopLoadingAnimationIfNeeded() {
         if (viewState.value?.isLoading == true) {
-            stopLoadingAnimationEvent.updateValue(Event(Unit))
-        }
-    }
-
-    private fun fetchCurrencyRates() {
-        viewModelScope.launch(exceptionHandler) {
-            val cryptoRates = cryptoCurrenciesRepository.fetchAll()
-            viewState.updateValue(CryptoCurrencyListViewState(cryptoRates = cryptoRates.toViewEntities()))
             stopLoadingAnimationEvent.updateValue(Event(Unit))
         }
     }

@@ -1,6 +1,6 @@
 package pl.marekvogt.cryptocurrency.ui.common.lifecycle
 
-class Event<out T>(private val content: T) {
+data class Event<out T>(private val content: T) {
 
     private var hasBeenHandled = false
 
