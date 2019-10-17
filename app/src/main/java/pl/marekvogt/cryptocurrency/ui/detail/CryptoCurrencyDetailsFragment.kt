@@ -48,7 +48,9 @@ class CryptoCurrencyDetailsFragment : DaggerFragment() {
     }
 
     private fun setupViewModel(viewEntity: CryptoCurrencyRateViewEntity) {
-        viewModel.getViewState(viewEntity).nonNull().observe(this) { labelValues ->
+        viewModel.setupCurrencyDetails(viewEntity)
+
+        viewModel.viewState.nonNull().observe(this) { labelValues ->
             binding.labelValues = labelValues
         }
     }

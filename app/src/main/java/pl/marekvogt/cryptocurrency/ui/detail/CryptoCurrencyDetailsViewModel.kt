@@ -11,10 +11,11 @@ class CryptoCurrencyDetailsViewModel @Inject constructor(
     private val cryptoCurrencyDetailsMapper: CryptoCurrencyDetailsMapper
 ) : BaseViewModel() {
 
-    private val viewState: LiveData<List<LabelValue>> = MutableLiveData()
+    val viewState: LiveData<List<LabelValue>> = MutableLiveData<List<LabelValue>>().apply {
+        value = emptyList()
+    }
 
-    fun getViewState(cryptoCurrencyRateViewEntity: CryptoCurrencyRateViewEntity): LiveData<List<LabelValue>> {
+    fun setupCurrencyDetails(cryptoCurrencyRateViewEntity: CryptoCurrencyRateViewEntity) {
         viewState.updateValue(cryptoCurrencyDetailsMapper.map(cryptoCurrencyRateViewEntity))
-        return viewState
     }
 }
