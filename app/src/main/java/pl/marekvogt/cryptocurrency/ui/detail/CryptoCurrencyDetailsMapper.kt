@@ -4,12 +4,13 @@ import android.content.Context
 import pl.marekvogt.cryptocurrency.R
 import pl.marekvogt.cryptocurrency.ui.common.view.LabelValue
 import pl.marekvogt.cryptocurrency.ui.list.CryptoCurrencyRateViewEntity
+import javax.inject.Inject
 
 interface CryptoCurrencyDetailsMapper {
     fun map(viewEntity: CryptoCurrencyRateViewEntity): List<LabelValue>
 }
 
-class DefaultCryptoCurrencyDetailsMapper(
+class DefaultCryptoCurrencyDetailsMapper @Inject constructor(
     private val context: Context
 ) : CryptoCurrencyDetailsMapper {
 

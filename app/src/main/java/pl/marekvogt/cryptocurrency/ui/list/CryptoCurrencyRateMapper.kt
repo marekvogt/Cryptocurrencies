@@ -7,12 +7,13 @@ import pl.marekvogt.cryptocurrency.ui.common.formatter.MoneyFormatter
 import pl.marekvogt.cryptocurrency.ui.common.extension.getDrawableByIdentifier
 import pl.marekvogt.cryptocurrency.ui.common.formatter.TrendFormatter
 import java.util.*
+import javax.inject.Inject
 
 interface CryptoCurrencyRateMapper {
     fun map(currencyRate: CryptoCurrencyRate): CryptoCurrencyRateViewEntity
 }
 
-class DefaultCryptoCurrencyRateMapper(
+class DefaultCryptoCurrencyRateMapper @Inject constructor(
     private val context: Context,
     private val moneyFormatter: MoneyFormatter,
     private val trendFormatter: TrendFormatter,
