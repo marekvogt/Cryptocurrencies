@@ -14,14 +14,12 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    @JvmStatic
     fun cryptoCurrenciesService(
         retrofit: Retrofit
     ): CryptoCurrenciesService = retrofit.create(CryptoCurrenciesService::class.java)
 
     @Singleton
     @Provides
-    @JvmStatic
     fun provideRetrofit(): Retrofit {
         val gson = GsonBuilder()
             .serializeNulls()

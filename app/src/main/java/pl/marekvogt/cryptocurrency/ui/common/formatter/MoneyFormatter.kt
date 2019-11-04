@@ -5,6 +5,7 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.NumberFormat
 import java.util.*
+import javax.inject.Inject
 
 interface MoneyFormatter {
     fun format(money: Money): String
@@ -18,9 +19,11 @@ interface MoneyFormatter {
 
 private const val DEFAULT_FRACTION_DIGITS_NUMBER = 0
 
-class CryptoCurrencyPriceFormatter : MoneyFormatter {
+class CryptoCurrencyPriceFormatter @Inject constructor(
+    locale: Locale
+) : MoneyFormatter {
 
-    private val numberFormat = NumberFormat.getNumberInstance(Locale.getDefault()).apply {
+    private val numberFormat = NumberFormat.getNumberInstance(locale).apply {
         setFractionDigits(5)
         roundingMode = RoundingMode.DOWN
     }

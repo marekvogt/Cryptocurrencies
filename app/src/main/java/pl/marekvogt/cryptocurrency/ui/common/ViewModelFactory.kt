@@ -1,4 +1,4 @@
-package pl.marekvogt.cryptocurrency.viewmodel
+package pl.marekvogt.cryptocurrency.ui.common
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

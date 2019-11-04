@@ -1,8 +1,7 @@
 package pl.marekvogt.cryptocurrency.ui.common
 
-import android.content.Context
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import pl.marekvogt.cryptocurrency.ui.common.error.DefaultErrorMessageResolver
 import pl.marekvogt.cryptocurrency.ui.common.error.ErrorMessageResolver
 import pl.marekvogt.cryptocurrency.ui.common.formatter.CryptoCurrencyPriceFormatter
@@ -11,19 +10,14 @@ import pl.marekvogt.cryptocurrency.ui.common.formatter.MoneyFormatter
 import pl.marekvogt.cryptocurrency.ui.common.formatter.TrendFormatter
 
 @Module
-object UiModule {
+interface UiModule {
 
-    @Provides
-    @JvmStatic
-    fun provideMoneyFormatter(): MoneyFormatter = CryptoCurrencyPriceFormatter()
+    @Binds
+    fun bindMoneyFormatter(priceFormatter: CryptoCurrencyPriceFormatter): MoneyFormatter
 
-    @Provides
-    @JvmStatic
-    fun provideErrorMessageResolver(
-        context: Context
-    ): ErrorMessageResolver = DefaultErrorMessageResolver(context)
+    @Binds
+    fun bindErrorMessageResolver(errorMessageResolver: DefaultErrorMessageResolver): ErrorMessageResolver
 
-    @Provides
-    @JvmStatic
-    fun provideTrendFormatter(): TrendFormatter = DefaultTrendFormatter()
+    @Binds
+    fun bindTrendFormatter(trendFormatter: DefaultTrendFormatter): TrendFormatter
 }

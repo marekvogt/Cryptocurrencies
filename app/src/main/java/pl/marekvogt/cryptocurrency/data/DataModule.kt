@@ -1,18 +1,16 @@
 package pl.marekvogt.cryptocurrency.data
 
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
-import pl.marekvogt.cryptocurrency.data.network.CryptoCurrenciesService
 import pl.marekvogt.cryptocurrency.domain.repository.CryptoCurrenciesCacheableRepository
 import javax.inject.Singleton
 
 @Module
-object DataModule {
+interface DataModule {
 
+    @Binds
     @Singleton
-    @Provides
-    @JvmStatic
-    fun provideCryptoCurrenciesRepository(
-        service: CryptoCurrenciesService
-    ): CryptoCurrenciesCacheableRepository = CryptoCurrenciesRestRepository(service)
+    fun bindCryptoCurrenciesRepository(
+        cryptoCurrenciesRepository: CryptoCurrenciesRestRepository
+    ): CryptoCurrenciesCacheableRepository
 }

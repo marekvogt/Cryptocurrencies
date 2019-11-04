@@ -5,12 +5,11 @@ import android.content.Context
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import dagger.android.AndroidInjectionModule
 import pl.marekvogt.cryptocurrency.App
 import java.util.*
 import javax.inject.Singleton
 
-@Module(includes = [AndroidInjectionModule::class])
+@Module
 abstract class AppModule {
 
     @Singleton
@@ -23,9 +22,10 @@ abstract class AppModule {
 
     @Module
     companion object {
-        @JvmStatic
-        @Singleton
+
         @Provides
+        @Singleton
+        @JvmStatic
         fun provideLocale(): Locale = Locale.getDefault()
     }
 }

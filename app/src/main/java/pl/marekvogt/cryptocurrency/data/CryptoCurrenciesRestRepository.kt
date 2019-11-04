@@ -7,8 +7,9 @@ import pl.marekvogt.cryptocurrency.data.network.CryptoCurrenciesService
 import pl.marekvogt.cryptocurrency.domain.model.CryptoCurrencyRate
 import pl.marekvogt.cryptocurrency.domain.model.CryptoCurrencyRates
 import pl.marekvogt.cryptocurrency.domain.repository.CryptoCurrenciesCacheableRepository
+import javax.inject.Inject
 
-class CryptoCurrenciesRestRepository(
+class CryptoCurrenciesRestRepository @Inject constructor(
     private val cryptoCurrenciesService: CryptoCurrenciesService
 ) : CryptoCurrenciesCacheableRepository {
 

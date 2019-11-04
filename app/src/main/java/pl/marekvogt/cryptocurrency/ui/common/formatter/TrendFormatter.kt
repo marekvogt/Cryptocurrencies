@@ -5,15 +5,18 @@ import pl.marekvogt.cryptocurrency.domain.model.TrendDirection
 import java.math.RoundingMode
 import java.text.NumberFormat
 import java.util.*
+import javax.inject.Inject
 
 interface TrendFormatter {
 
     fun format(trend: Trend): String
 }
 
-class DefaultTrendFormatter : TrendFormatter {
+class DefaultTrendFormatter @Inject constructor(
+    locale: Locale
+): TrendFormatter {
 
-    private val numberFormat = NumberFormat.getNumberInstance(Locale.getDefault()).apply {
+    private val numberFormat = NumberFormat.getNumberInstance(locale).apply {
         minimumFractionDigits = 2
         maximumFractionDigits = 2
         roundingMode = RoundingMode.DOWN
