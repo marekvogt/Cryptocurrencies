@@ -4,11 +4,14 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="toolbarStyle">@style/CustomToolbarStyle</item>
     </style>
 
-    <style name="Theme.Toolbar" parent="ThemeOverlay.AppCompat.Light">
+    <style name="CustomToolbarStyle" parent="@style/Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/colorAccent</item>
         <item name="titleTextColor">@android:color/white</item>
-        <item name="colorControlNormal">@android:color/white</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
     </style>
 
 </resources>
