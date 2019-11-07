@@ -2,7 +2,7 @@ package pl.marekvogt.cryptocurrency.ui
 
 import android.os.Bundle
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import dagger.android.support.DaggerAppCompatActivity
 import pl.marekvogt.cryptocurrency.R
 import kotlinx.android.synthetic.main.main_activity.*
@@ -19,7 +19,7 @@ class MainActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
-        navController = findNavController(R.id.navHostFragment)
+        navController = (supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment).navController
         appBarConfiguration = AppBarConfiguration(navController.graph)
 
         toolbar.setupWithNavController(navController, appBarConfiguration)
