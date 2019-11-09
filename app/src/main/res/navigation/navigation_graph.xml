@@ -18,6 +18,7 @@
     <fragment
         android:id="@+id/cryptoCurrencyDetailsFragment"
         android:name="pl.marekvogt.cryptocurrency.ui.detail.CryptoCurrencyDetailsFragment"
+        android:label="{title}"
         tools:layout="@layout/fragment_currency_list">
 
         <argument
@@ -28,6 +29,10 @@
             android:name="transitionName"
             app:argType="string"
             app:nullable="false" />
+        <argument
+            android:name="title"
+            app:argType="string"
+            app:nullable="false"/>
 
     </fragment>
 

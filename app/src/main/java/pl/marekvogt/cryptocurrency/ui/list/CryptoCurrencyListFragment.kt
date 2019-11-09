@@ -47,7 +47,7 @@ class CryptoCurrencyListFragment : DaggerFragment() {
         currencyRatesAdapter = CryptoCurrencyListAdapter()
         currencyRatesAdapter.onItemClicked = { viewEntity, imgCurrencySymbol ->
             findNavController().navigate(
-                CryptoCurrencyListFragmentDirections.actionNavigateToDetails(viewEntity, imgCurrencySymbol.transitionName),
+                CryptoCurrencyListFragmentDirections.actionNavigateToDetails(viewEntity, imgCurrencySymbol.transitionName, viewEntity.currency.name),
                 FragmentNavigatorExtras(imgCurrencySymbol to imgCurrencySymbol.transitionName)
             )
         }
