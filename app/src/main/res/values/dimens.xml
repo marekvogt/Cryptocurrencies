@@ -3,5 +3,6 @@
     <dimen name="layout_horizontal_spacing">20dp</dimen>
     <dimen name="list_item_spacing">8dp</dimen>
     <dimen name="divider_horizontal_spacing">10dp</dimen>
-
+    <dimen name="card_margin">10dp</dimen>
+    <dimen name="card_radius">4dp</dimen>
 </resources>

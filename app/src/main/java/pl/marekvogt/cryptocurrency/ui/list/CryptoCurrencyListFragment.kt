@@ -19,6 +19,8 @@ import pl.marekvogt.cryptocurrency.ui.common.autoCleared
 import pl.marekvogt.cryptocurrency.ui.common.extension.nonNull
 import pl.marekvogt.cryptocurrency.ui.common.extension.observeEvent
 import pl.marekvogt.cryptocurrency.ui.common.extension.showMessage
+import pl.marekvogt.cryptocurrency.ui.common.list.MarginItemDecoration
+import pl.marekvogt.cryptocurrency.ui.common.list.Orientation
 
 class CryptoCurrencyListFragment : DaggerFragment() {
 
@@ -52,7 +54,7 @@ class CryptoCurrencyListFragment : DaggerFragment() {
             )
         }
         rwCurrencyRates.adapter = currencyRatesAdapter
-        rwCurrencyRates.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+        rwCurrencyRates.addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.card_margin).toInt(), Orientation.VERTICAL))
 
         postponeEnterTransition()
         rwCurrencyRates.viewTreeObserver
