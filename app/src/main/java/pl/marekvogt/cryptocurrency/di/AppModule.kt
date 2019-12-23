@@ -5,6 +5,8 @@ import android.content.Context
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import pl.marekvogt.cryptocurrency.App
 import java.util.*
 import javax.inject.Singleton
@@ -27,5 +29,10 @@ abstract class AppModule {
         @Singleton
         @JvmStatic
         fun provideLocale(): Locale = Locale.getDefault()
+
+        @Provides
+        @Singleton
+        @JvmStatic
+        fun provideIOCoroutineDispatcher(): CoroutineDispatcher = Dispatchers.IO
     }
 }

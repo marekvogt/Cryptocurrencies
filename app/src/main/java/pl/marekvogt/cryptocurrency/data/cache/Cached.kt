@@ -1,18 +1,14 @@
 package pl.marekvogt.cryptocurrency.data.cache
 
-interface Cacheable {
-    fun invalidateCache()
-}
-
 class Cached<T>(private val emptyValue: T) {
 
-    private var cached: T = emptyValue
+    private var cache: T = emptyValue
 
     suspend fun get(freshDataSource: suspend () -> T, cacheValidityPredicate: (T) -> Boolean): T {
-        return cached.takeIf(cacheValidityPredicate) ?: freshDataSource.invoke()
+        return cache.takeIf(cacheValidityPredicate) ?: freshDataSource.invoke().also { cache = it }
     }
 
     fun clearCache() {
-        cached = emptyValue
+        cache = emptyValue
     }
 }

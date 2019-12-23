@@ -3,7 +3,7 @@ package pl.marekvogt.cryptocurrency.domain.repository
 import androidx.annotation.VisibleForTesting
 import pl.marekvogt.cryptocurrency.domain.model.CryptoCurrencyRate
 
-class FakeCryptoCurrenciesRepository : CryptoCurrenciesCacheableRepository {
+class FakeCryptoCurrenciesRepository : CryptoCurrenciesCachedRepository {
 
     private val cryptoCurrencyRates: MutableList<CryptoCurrencyRate> = mutableListOf()
 

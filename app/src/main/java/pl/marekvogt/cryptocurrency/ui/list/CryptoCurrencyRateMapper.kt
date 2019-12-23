@@ -4,7 +4,7 @@ import android.content.Context
 import pl.marekvogt.cryptocurrency.R
 import pl.marekvogt.cryptocurrency.domain.model.CryptoCurrencyRate
 import pl.marekvogt.cryptocurrency.ui.common.formatter.MoneyFormatter
-import pl.marekvogt.cryptocurrency.ui.common.extension.getDrawableByIdentifier
+import pl.marekvogt.cryptocurrency.ui.common.extension.getDrawableByName
 import pl.marekvogt.cryptocurrency.ui.common.formatter.TrendFormatter
 import java.util.*
 import javax.inject.Inject
@@ -36,5 +36,5 @@ class DefaultCryptoCurrencyRateMapper @Inject constructor(
         )
 
     private fun resolveCurrencyIconRes(currencyRate: CryptoCurrencyRate) =
-        context.getDrawableByIdentifier(currencyRate.cryptoCurrency.symbol.toLowerCase(locale)) ?: R.drawable.unknown
+        context.getDrawableByName(currencyRate.cryptoCurrency.symbol.toLowerCase(locale)) ?: R.drawable.unknown
 }

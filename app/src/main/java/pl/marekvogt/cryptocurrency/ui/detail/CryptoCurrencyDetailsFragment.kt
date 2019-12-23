@@ -43,7 +43,6 @@ class CryptoCurrencyDetailsFragment : DaggerFragment() {
         imgCurrencyIcon.setImageDrawable(currencyIconDrawable)
         imgCurrencyIcon.transitionName = detailsArgs.transitionName
         sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
-
         setupViewModel(currencyRateViewEntity)
     }
 
