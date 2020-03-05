@@ -13,6 +13,7 @@
     </data>
 
     <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/layoutRoot"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutDescription="@xml/scene_currency_details">
@@ -49,6 +50,7 @@
             app:layout_constraintTop_toBottomOf="@id/imgGrip" />
 
         <ScrollView
+            android:id="@+id/layoutScroll"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:fillViewport="true"

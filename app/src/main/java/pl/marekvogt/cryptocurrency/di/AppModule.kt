@@ -22,17 +22,14 @@ abstract class AppModule {
     @Binds
     abstract fun bindContext(application: Application): Context
 
-    @Module
     companion object {
 
         @Provides
         @Singleton
-        @JvmStatic
         fun provideLocale(): Locale = Locale.getDefault()
 
         @Provides
         @Singleton
-        @JvmStatic
         fun provideIOCoroutineDispatcher(): CoroutineDispatcher = Dispatchers.IO
     }
 }

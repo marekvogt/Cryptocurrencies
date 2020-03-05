@@ -22,9 +22,7 @@ class CryptoCurrencyListViewModel @Inject constructor(
     val stopLoadingAnimationEvent: LiveData<Event<Unit>> = MutableLiveData()
     val errorMessageEvent: LiveData<Event<String>> = MutableLiveData()
 
-    val viewState: LiveData<CryptoCurrencyListViewState> = MutableLiveData<CryptoCurrencyListViewState>().apply {
-        value = CryptoCurrencyListViewState(isLoading = true)
-    }
+    val viewState: LiveData<CryptoCurrencyListViewState> = MutableLiveData(CryptoCurrencyListViewState(isLoading = true))
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         val errorMessage = errorMessageResolver.resolve(throwable)
