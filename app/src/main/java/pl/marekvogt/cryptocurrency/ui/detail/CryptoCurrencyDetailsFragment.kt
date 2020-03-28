@@ -18,10 +18,9 @@ import pl.marekvogt.cryptocurrency.ui.common.extension.nonNull
 import pl.marekvogt.cryptocurrency.ui.list.CryptoCurrencyRateViewEntity
 import javax.inject.Inject
 
-class CryptoCurrencyDetailsFragment : DaggerFragment() {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+class CryptoCurrencyDetailsFragment @Inject constructor(
+    private val viewModelFactory: ViewModelProvider.Factory
+) : DaggerFragment() {
 
     private val viewModel: CryptoCurrencyDetailsViewModel by viewModels { viewModelFactory }
 

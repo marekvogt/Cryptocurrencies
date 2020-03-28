@@ -15,9 +15,5 @@ data class CryptoCurrencyRateViewEntity(
     val iconRes: Int,
     val dayVolume: String,
     val circulatingSupply: String,
-    val totalSupply: String,
-    val maxSupply: String,
-    val hourChange: String,
-    val dayChange: String,
-    val weekChange: String
+    val dayChange: String
 ): Serializable

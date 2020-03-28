@@ -1,6 +1,8 @@
 package pl.marekvogt.cryptocurrency.ui
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentFactory
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import dagger.android.support.DaggerAppCompatActivity
@@ -9,13 +11,20 @@ import kotlinx.android.synthetic.main.main_activity.*
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.navigateUp
 import androidx.navigation.ui.setupWithNavController
+import dagger.android.AndroidInjection
+import javax.inject.Inject
 
-class MainActivity : DaggerAppCompatActivity() {
+class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var fragmentFactory : FragmentFactory
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
+        supportFragmentManager.fragmentFactory = fragmentFactory
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 

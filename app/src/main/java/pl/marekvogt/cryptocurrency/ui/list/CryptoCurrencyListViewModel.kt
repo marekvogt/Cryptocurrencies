@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import pl.marekvogt.cryptocurrency.domain.model.CryptoCurrencyRate
+import pl.marekvogt.cryptocurrency.domain.model.Currency
+import pl.marekvogt.cryptocurrency.domain.repository.BaseCurrencyRepository
 import pl.marekvogt.cryptocurrency.domain.repository.CryptoCurrenciesCachedRepository
 import pl.marekvogt.cryptocurrency.ui.common.error.ErrorMessageResolver
 import pl.marekvogt.cryptocurrency.ui.common.lifecycle.BaseViewModel
@@ -15,6 +17,7 @@ import javax.inject.Inject
 class CryptoCurrencyListViewModel @Inject constructor(
     private val cryptoCurrenciesRepository: CryptoCurrenciesCachedRepository,
     private val cryptoCurrencyRateMapper: CryptoCurrencyRateMapper,
+    private val baseCurrencyRepository: BaseCurrencyRepository,
     private val errorMessageResolver: ErrorMessageResolver
 ) : BaseViewModel() {
 
@@ -33,7 +36,8 @@ class CryptoCurrencyListViewModel @Inject constructor(
     fun loadCryptoCurrencyRates() {
         viewModelScope.launch(exceptionHandler) {
             val cryptoRates = cryptoCurrenciesRepository.fetchAll()
-            viewState.updateValue(CryptoCurrencyListViewState(cryptoRates = cryptoRates.toViewEntities()))
+            val baseCurrency = baseCurrencyRepository.getBaseCurrency()
+            viewState.updateValue(CryptoCurrencyListViewState(cryptoRates = cryptoRates.toViewEntities(baseCurrency)))
             stopLoadingAnimationEvent.updateValue(Event(Unit))
         }
     }
@@ -56,6 +60,8 @@ class CryptoCurrencyListViewModel @Inject constructor(
         }
     }
 
-    private fun List<CryptoCurrencyRate>.toViewEntities() = map(cryptoCurrencyRateMapper::map)
+    private fun List<CryptoCurrencyRate>.toViewEntities(baseCurrency: Currency) = map {
+        cryptoCurrencyRateMapper.map(it, baseCurrency)
+    }
 
 }

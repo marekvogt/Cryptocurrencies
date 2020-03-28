@@ -21,10 +21,6 @@ class DefaultCryptoCurrencyDetailsMapper @Inject constructor(
             LabelValue(context.getString(R.string.l_price), viewEntity.price),
             LabelValue(context.getString(R.string.l_day_volume), viewEntity.dayVolume),
             LabelValue(context.getString(R.string.l_circulating_supply), viewEntity.circulatingSupply),
-            LabelValue(context.getString(R.string.l_max_supply), viewEntity.maxSupply),
-            LabelValue(context.getString(R.string.l_total_supply), viewEntity.totalSupply),
-            LabelValue(context.getString(R.string.l_hour_change), viewEntity.hourChange),
-            LabelValue(context.getString(R.string.l_day_change), viewEntity.dayChange),
-            LabelValue(context.getString(R.string.l_week_change), viewEntity.weekChange)
+            LabelValue(context.getString(R.string.l_day_change), viewEntity.dayChange)
         )
 }

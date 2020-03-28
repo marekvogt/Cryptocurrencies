@@ -28,7 +28,7 @@ object NetworkModule {
 
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .baseUrl("https://api.coinmarketcap.com/")
+            .baseUrl("https://api.coingecko.com/")
             .build()
     }
 }

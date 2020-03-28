@@ -9,12 +9,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_currency_list.*
 import pl.marekvogt.cryptocurrency.R
 import javax.inject.Inject
 import pl.marekvogt.cryptocurrency.databinding.FragmentCurrencyListBinding
+import pl.marekvogt.cryptocurrency.domain.repository.CryptoCurrenciesCachedRepository
 import pl.marekvogt.cryptocurrency.ui.common.autoCleared
 import pl.marekvogt.cryptocurrency.ui.common.extension.nonNull
 import pl.marekvogt.cryptocurrency.ui.common.extension.observeEvent
@@ -22,10 +22,9 @@ import pl.marekvogt.cryptocurrency.ui.common.extension.showMessage
 import pl.marekvogt.cryptocurrency.ui.common.list.MarginItemDecoration
 import pl.marekvogt.cryptocurrency.ui.common.list.Orientation
 
-class CryptoCurrencyListFragment : DaggerFragment() {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+class CryptoCurrencyListFragment @Inject constructor(
+    private val viewModelFactory: ViewModelProvider.Factory
+): DaggerFragment() {
 
     private val viewModel: CryptoCurrencyListViewModel by viewModels { viewModelFactory }
 

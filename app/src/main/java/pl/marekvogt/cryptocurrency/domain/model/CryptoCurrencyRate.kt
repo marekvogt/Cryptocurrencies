@@ -1,10 +1,12 @@
 package pl.marekvogt.cryptocurrency.domain.model
 
+import java.math.BigDecimal
+
 data class CryptoCurrencyRate(
     val cryptoCurrency: CryptoCurrency,
-    val price: Money,
-    val supply: Supply,
-    val marketCap: Money,
-    val dayVolume: Money,
-    val trendHistory: TrendHistory
+    val price: BigDecimal,
+    val circulatingSupply: BigDecimal,
+    val marketCap: BigDecimal,
+    val totalVolume: BigDecimal,
+    val dayTrend: Trend
 )
