@@ -5,26 +5,33 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentFactory
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import dagger.android.support.DaggerAppCompatActivity
-import pl.marekvogt.cryptocurrency.R
-import kotlinx.android.synthetic.main.main_activity.*
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.navigateUp
 import androidx.navigation.ui.setupWithNavController
-import dagger.android.AndroidInjection
-import javax.inject.Inject
+import dagger.hilt.EntryPoint
+import dagger.hilt.InstallIn
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.EntryPointAccessors
+import dagger.hilt.android.components.ActivityComponent
+import kotlinx.android.synthetic.main.main_activity.*
+import pl.marekvogt.cryptocurrency.R
 
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
-    @Inject
-    lateinit var fragmentFactory : FragmentFactory
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
 
+    @EntryPoint
+    @InstallIn(ActivityComponent::class)
+    interface MainActivityEntryPoint {
+        val fragmentFactory: FragmentFactory
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
-        supportFragmentManager.fragmentFactory = fragmentFactory
+        val entryPoint = EntryPointAccessors.fromActivity(this, MainActivityEntryPoint::class.java)
+        supportFragmentManager.fragmentFactory = entryPoint.fragmentFactory
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 

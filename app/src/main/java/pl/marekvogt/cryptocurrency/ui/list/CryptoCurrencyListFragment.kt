@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
-import dagger.android.support.DaggerFragment
+import dagger.hilt.android.AndroidEntryPoint
 import pl.marekvogt.cryptocurrency.R
 import javax.inject.Inject
 import pl.marekvogt.cryptocurrency.databinding.FragmentCurrencyListBinding
@@ -20,11 +20,10 @@ import pl.marekvogt.cryptocurrency.ui.common.extension.showMessage
 import pl.marekvogt.cryptocurrency.ui.common.list.MarginItemDecoration
 import pl.marekvogt.cryptocurrency.ui.common.list.Orientation
 
-class CryptoCurrencyListFragment @Inject constructor(
-    private val viewModelFactory: ViewModelProvider.Factory
-): DaggerFragment() {
+@AndroidEntryPoint
+class CryptoCurrencyListFragment @Inject constructor(): Fragment() {
 
-    private val viewModel: CryptoCurrencyListViewModel by viewModels { viewModelFactory }
+    private val viewModel: CryptoCurrencyListViewModel by viewModels()
 
     private var binding by autoCleared<FragmentCurrencyListBinding>()
     private var currencyRatesAdapter by autoCleared<CryptoCurrencyListAdapter>()

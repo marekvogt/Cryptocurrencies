@@ -1,6 +1,7 @@
 package pl.marekvogt.cryptocurrency.ui.detail
 
 import android.content.Context
+import dagger.hilt.android.qualifiers.ApplicationContext
 import pl.marekvogt.cryptocurrency.R
 import pl.marekvogt.cryptocurrency.ui.common.view.LabelValue
 import pl.marekvogt.cryptocurrency.ui.list.CryptoCurrencyRateViewEntity
@@ -11,7 +12,7 @@ interface CryptoCurrencyDetailsMapper {
 }
 
 class DefaultCryptoCurrencyDetailsMapper @Inject constructor(
-    private val context: Context
+    @ApplicationContext private val context: Context
 ) : CryptoCurrencyDetailsMapper {
 
     override fun map(viewEntity: CryptoCurrencyRateViewEntity): List<LabelValue> =

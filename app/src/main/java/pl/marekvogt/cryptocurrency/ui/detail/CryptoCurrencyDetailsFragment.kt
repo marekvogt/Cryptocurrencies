@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.transition.TransitionInflater
-import dagger.android.support.DaggerFragment
+import dagger.hilt.android.AndroidEntryPoint
 import pl.marekvogt.cryptocurrency.R
 import pl.marekvogt.cryptocurrency.databinding.FragmentCurrencyDetailsBinding
 import pl.marekvogt.cryptocurrency.ui.common.autoCleared
@@ -18,11 +18,10 @@ import pl.marekvogt.cryptocurrency.ui.common.extension.nonNull
 import pl.marekvogt.cryptocurrency.ui.list.CryptoCurrencyRateViewEntity
 import javax.inject.Inject
 
-class CryptoCurrencyDetailsFragment @Inject constructor(
-    private val viewModelFactory: ViewModelProvider.Factory
-) : DaggerFragment() {
+@AndroidEntryPoint
+class CryptoCurrencyDetailsFragment @Inject constructor() : Fragment() {
 
-    private val viewModel: CryptoCurrencyDetailsViewModel by viewModels { viewModelFactory }
+    private val viewModel: CryptoCurrencyDetailsViewModel by viewModels()
 
     private val detailsArgs by navArgs<CryptoCurrencyDetailsFragmentArgs>()
     private var binding by autoCleared<FragmentCurrencyDetailsBinding>()

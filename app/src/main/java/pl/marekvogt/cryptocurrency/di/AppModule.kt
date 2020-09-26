@@ -1,35 +1,23 @@
 package pl.marekvogt.cryptocurrency.di
 
-import android.app.Application
-import android.content.Context
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import pl.marekvogt.cryptocurrency.App
 import java.util.*
 import javax.inject.Singleton
 
 @Module
-abstract class AppModule {
+@InstallIn(ApplicationComponent::class)
+interface AppModule {
 
+    @Provides
     @Singleton
-    @Binds
-    abstract fun bindApplication(app: App): Application
+    fun provideLocale(): Locale = Locale.getDefault()
 
+    @Provides
     @Singleton
-    @Binds
-    abstract fun bindContext(application: Application): Context
-
-    companion object {
-
-        @Provides
-        @Singleton
-        fun provideLocale(): Locale = Locale.getDefault()
-
-        @Provides
-        @Singleton
-        fun provideIOCoroutineDispatcher(): CoroutineDispatcher = Dispatchers.IO
-    }
+    fun provideIOCoroutineDispatcher(): CoroutineDispatcher = Dispatchers.IO
 }

@@ -4,15 +4,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 import dagger.multibindings.IntoMap
 import pl.marekvogt.cryptocurrency.ui.detail.CryptoCurrencyDetailsFragment
 import pl.marekvogt.cryptocurrency.ui.list.CryptoCurrencyListFragment
 
+
+@InstallIn(ActivityComponent::class)
 @Module
 interface FragmentFactoryModule {
 
     @Binds
-    fun bindFragmentFactory(fragmentFactory: DaggerFragmentFactory): FragmentFactory
+    fun bindFragmentFactory(fragmentFactory: InjectableFragmentFactory): FragmentFactory
 
     @Binds
     @IntoMap

@@ -7,7 +7,8 @@ import javax.inject.Inject
 import javax.inject.Provider
 import kotlin.reflect.KClass
 
-class DaggerFragmentFactory @Inject constructor(
+
+class InjectableFragmentFactory @Inject constructor(
     private val creator: Map<Class<out Fragment>, @JvmSuppressWildcards Provider<Fragment>>
 ): FragmentFactory() {
 

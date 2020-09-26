@@ -1,6 +1,7 @@
 package pl.marekvogt.cryptocurrency.ui.common.error
 
 import android.content.Context
+import dagger.hilt.android.qualifiers.ApplicationContext
 import pl.marekvogt.cryptocurrency.R
 import javax.inject.Inject
 
@@ -9,7 +10,7 @@ interface ErrorMessageResolver {
 }
 
 class DefaultErrorMessageResolver @Inject constructor(
-    private val context: Context
+    @ApplicationContext private val context: Context
 ) : ErrorMessageResolver {
 
     override fun resolve(throwable: Throwable): String =
