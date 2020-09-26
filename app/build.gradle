@@ -5,12 +5,12 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "pl.marekvogt.cryptocurrency"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -51,7 +51,7 @@ dependencies {
     implementation "androidx.core:core-ktx:$coreKtxVersion"
     implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleKtxVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleExtensionsVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleKtxVersion"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationKtxVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationKtxVersion"

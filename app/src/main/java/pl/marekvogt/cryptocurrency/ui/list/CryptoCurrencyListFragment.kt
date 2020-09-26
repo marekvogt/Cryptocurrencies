@@ -10,11 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.fragment_currency_list.*
 import pl.marekvogt.cryptocurrency.R
 import javax.inject.Inject
 import pl.marekvogt.cryptocurrency.databinding.FragmentCurrencyListBinding
-import pl.marekvogt.cryptocurrency.domain.repository.CryptoCurrenciesCachedRepository
 import pl.marekvogt.cryptocurrency.ui.common.autoCleared
 import pl.marekvogt.cryptocurrency.ui.common.extension.nonNull
 import pl.marekvogt.cryptocurrency.ui.common.extension.observeEvent
@@ -52,11 +50,11 @@ class CryptoCurrencyListFragment @Inject constructor(
                 FragmentNavigatorExtras(imgCurrencySymbol to imgCurrencySymbol.transitionName)
             )
         }
-        rwCurrencyRates.adapter = currencyRatesAdapter
-        rwCurrencyRates.addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.card_margin).toInt(), Orientation.VERTICAL))
+        binding.rwCurrencyRates.adapter = currencyRatesAdapter
+        binding.rwCurrencyRates.addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.card_margin).toInt(), Orientation.VERTICAL))
 
         postponeEnterTransition()
-        rwCurrencyRates.viewTreeObserver
+        binding.rwCurrencyRates.viewTreeObserver
             .addOnPreDrawListener {
                 startPostponedEnterTransition()
                 true
@@ -71,15 +69,15 @@ class CryptoCurrencyListFragment @Inject constructor(
         }
 
         viewModel.startLoadingAnimationEvent.observeEvent(viewLifecycleOwner) {
-            viewShimmerListPlaceholder.startShimmer()
+            binding.viewShimmerListPlaceholder.startShimmer()
         }
 
         viewModel.stopLoadingAnimationEvent.observeEvent(viewLifecycleOwner) {
-            viewShimmerListPlaceholder.stopShimmer()
+            binding.viewShimmerListPlaceholder.stopShimmer()
         }
 
         viewModel.errorMessageEvent.observeEvent(viewLifecycleOwner) { errorMessage ->
-            layoutRoot showMessage errorMessage
+            binding.layoutRoot showMessage errorMessage
         }
     }
 

@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.transition.TransitionInflater
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.fragment_currency_details.*
 import pl.marekvogt.cryptocurrency.R
 import pl.marekvogt.cryptocurrency.databinding.FragmentCurrencyDetailsBinding
 import pl.marekvogt.cryptocurrency.ui.common.autoCleared
@@ -37,10 +37,10 @@ class CryptoCurrencyDetailsFragment @Inject constructor(
         super.onViewCreated(view, savedInstanceState)
 
         val currencyRateViewEntity = detailsArgs.currencyRateViewEntity
-        val currencyIconDrawable = context?.getDrawable(currencyRateViewEntity.iconRes)
+        val currencyIconDrawable = ContextCompat.getDrawable(requireContext(), currencyRateViewEntity.iconRes)
 
-        imgCurrencyIcon.setImageDrawable(currencyIconDrawable)
-        imgCurrencyIcon.transitionName = detailsArgs.transitionName
+        binding.imgCurrencyIcon.setImageDrawable(currencyIconDrawable)
+        binding.imgCurrencyIcon.transitionName = detailsArgs.transitionName
         sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
         setupViewModel(currencyRateViewEntity)
     }
