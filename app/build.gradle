@@ -40,8 +40,8 @@ android {
         experimental = true
     }
 
-    dataBinding {
-        enabled true
+    buildFeatures {
+        dataBinding true
     }
 }
 
@@ -58,10 +58,6 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$navigationKtxVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
-//    implementation "com.google.dagger:dagger:$daggerVersion"
-//    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-//    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
-//    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.facebook.shimmer:shimmer:$shimmerVersion"

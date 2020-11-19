@@ -7,6 +7,7 @@ import com.google.gson.JsonObject
 import pl.marekvogt.cryptocurrency.data.extension.getBigDecimal
 import pl.marekvogt.cryptocurrency.data.extension.getString
 import pl.marekvogt.cryptocurrency.domain.model.*
+import java.lang.Exception
 import java.lang.reflect.Type
 import java.math.BigDecimal
 
@@ -17,16 +18,20 @@ class CryptoCurrencyRatesDeserializer : JsonDeserializer<CryptoCurrencyRates> {
         typeOfT: Type?,
         context: JsonDeserializationContext?
     ): CryptoCurrencyRates {
-        val elements = json?.asJsonArray?.map {
+        val elements = json?.asJsonArray?.mapNotNull {
             val currencyRateData = it.asJsonObject
-            CryptoCurrencyRate(
-                cryptoCurrency = deserializeCurrency(currencyRateData),
-                price = currencyRateData.getBigDecimal("current_price"),
-                totalVolume = currencyRateData.getBigDecimal("total_volume"),
-                marketCap = currencyRateData.getBigDecimal("market_cap"),
-                circulatingSupply = currencyRateData.getBigDecimal("circulating_supply"),
-                dayTrend = deserializeDayTrend(currencyRateData)
-            )
+            try {
+                CryptoCurrencyRate(
+                    cryptoCurrency = deserializeCurrency(currencyRateData),
+                    price = currencyRateData.getBigDecimal("current_price"),
+                    totalVolume = currencyRateData.getBigDecimal("total_volume"),
+                    marketCap = currencyRateData.getBigDecimal("market_cap"),
+                    circulatingSupply = currencyRateData.getBigDecimal("circulating_supply"),
+                    dayTrend = deserializeDayTrend(currencyRateData)
+                )
+            } catch (ex: Exception) {
+                null
+            }
         }?.toList()
         return CryptoCurrencyRates(elements ?: emptyList())
     }
