@@ -4,7 +4,7 @@ import androidx.databinding.BindingAdapter
 import pl.marekvogt.cryptocurrency.ui.common.view.LabelValue
 import pl.marekvogt.cryptocurrency.ui.common.view.LabelValueListView
 
-@BindingAdapter("app:bind")
+@BindingAdapter("bind")
 fun bindLabelValues(labelValueListView: LabelValueListView, labelValues: List<LabelValue>?) {
     labelValues?.let { labelValueListView.bind(it) }
 }

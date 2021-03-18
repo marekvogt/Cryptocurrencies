@@ -2,6 +2,8 @@ package pl.marekvogt.cryptocurrency.ui.detail
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.scopes.ActivityRetainedScoped
+import dagger.hilt.android.scopes.FragmentScoped
 import pl.marekvogt.cryptocurrency.R
 import pl.marekvogt.cryptocurrency.ui.common.view.LabelValue
 import pl.marekvogt.cryptocurrency.ui.list.CryptoCurrencyRateViewEntity

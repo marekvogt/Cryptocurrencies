@@ -1,6 +1,7 @@
 package pl.marekvogt.cryptocurrency.ui.list.mapper
 
 import pl.marekvogt.cryptocurrency.domain.model.CryptoCurrencyRate
+import pl.marekvogt.cryptocurrency.domain.model.Currency
 import pl.marekvogt.cryptocurrency.domain.model.testCurrencyRate
 import pl.marekvogt.cryptocurrency.ui.list.CryptoCurrencyRateMapper
 import pl.marekvogt.cryptocurrency.ui.list.CryptoCurrencyRateViewEntity
@@ -13,7 +14,7 @@ class FakeCryptoCurrencyRateMapper : CryptoCurrencyRateMapper {
     )
 
     override fun map(
-        currencyRate: CryptoCurrencyRate
+        currencyRate: CryptoCurrencyRate, baseCurrency: Currency
     ): CryptoCurrencyRateViewEntity = mapper[testCurrencyRate] ?: error("Unknown test model")
 
 }

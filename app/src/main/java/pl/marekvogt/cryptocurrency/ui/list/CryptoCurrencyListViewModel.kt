@@ -1,9 +1,9 @@
 package pl.marekvogt.cryptocurrency.ui.list
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import pl.marekvogt.cryptocurrency.domain.model.CryptoCurrencyRate
@@ -13,8 +13,10 @@ import pl.marekvogt.cryptocurrency.domain.repository.CryptoCurrenciesCachedRepos
 import pl.marekvogt.cryptocurrency.ui.common.error.ErrorMessageResolver
 import pl.marekvogt.cryptocurrency.ui.common.lifecycle.BaseViewModel
 import pl.marekvogt.cryptocurrency.ui.common.lifecycle.Event
+import javax.inject.Inject
 
-class CryptoCurrencyListViewModel @ViewModelInject constructor(
+@HiltViewModel
+class CryptoCurrencyListViewModel @Inject constructor(
     private val cryptoCurrenciesRepository: CryptoCurrenciesCachedRepository,
     private val cryptoCurrencyRateMapper: CryptoCurrencyRateMapper,
     private val baseCurrencyRepository: BaseCurrencyRepository,

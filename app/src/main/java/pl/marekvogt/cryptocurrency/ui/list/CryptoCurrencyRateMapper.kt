@@ -2,6 +2,7 @@ package pl.marekvogt.cryptocurrency.ui.list
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.scopes.ActivityRetainedScoped
 import pl.marekvogt.cryptocurrency.R
 import pl.marekvogt.cryptocurrency.domain.model.CryptoCurrencyRate
 import pl.marekvogt.cryptocurrency.domain.model.Currency

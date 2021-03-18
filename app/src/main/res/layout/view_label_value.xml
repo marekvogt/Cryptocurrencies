@@ -1,27 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:parentTag="android.widget.LinearLayout">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/txtLabel"
-        style="?textAppearanceListItemSecondary"
-        android:layout_width="wrap_content"
+    <data>
+        <variable
+            name="labelValue"
+            type="pl.marekvogt.cryptocurrency.ui.common.view.LabelValue" />
+    </data>
+
+    <merge
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="viewStart"
-        tools:text="Label" />
+        android:orientation="vertical"
+        tools:parentTag="android.widget.LinearLayout">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/txtValue"
-        style="?android:textAppearanceListItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:textAlignment="viewStart"
-        tools:text="Value" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtLabel"
+            style="?textAppearanceListItemSecondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="viewStart"
+            android:text="@{labelValue.label}"
+            tools:text="Label" />
 
-</merge>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtValue"
+            style="?android:textAppearanceListItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textAlignment="viewStart"
+            android:text="@{labelValue.value}"
+            tools:text="Value" />
+
+    </merge>
+</layout>

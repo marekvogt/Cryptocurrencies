@@ -1,24 +1,21 @@
 package pl.marekvogt.cryptocurrency.ui.common.view
 
 import android.content.Context
-import android.os.Parcelable
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.widget.LinearLayout
-import kotlinx.android.parcel.Parcelize
-import kotlinx.android.synthetic.main.view_label_value.view.*
-import pl.marekvogt.cryptocurrency.R
-import pl.marekvogt.cryptocurrency.ui.common.extension.inflate
+import pl.marekvogt.cryptocurrency.databinding.ViewLabelValueBinding
 
 class LabelValueView(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
 
+    private val binding : ViewLabelValueBinding = ViewLabelValueBinding.inflate(LayoutInflater.from(context), this, true)
+
     init {
-        inflate(R.layout.view_label_value, true)
         orientation = VERTICAL
     }
 
     fun bind(labelValue: LabelValue) {
-        txtLabel.text = labelValue.label
-        txtValue.text = labelValue.value
+        binding.labelValue = labelValue
     }
 }
 

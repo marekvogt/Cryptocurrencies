@@ -7,6 +7,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import pl.marekvogt.cryptocurrency.domain.model.testCurrencyRate
+import pl.marekvogt.cryptocurrency.domain.repository.FakeBaseCurrencyRepository
 import pl.marekvogt.cryptocurrency.domain.repository.FakeCryptoCurrenciesRepository
 import pl.marekvogt.cryptocurrency.ui.common.FakeErrorMessageResolver
 import pl.marekvogt.cryptocurrency.ui.common.errorMessage
@@ -23,15 +24,17 @@ class CryptoCurrencyListViewModelTest {
 
     private lateinit var viewModel: CryptoCurrencyListViewModel
     private lateinit var cryptoCurrenciesRepository: FakeCryptoCurrenciesRepository
+    private lateinit var baseCurrencyRepository: FakeBaseCurrencyRepository
     private lateinit var cryptoCurrencyRateMapper: FakeCryptoCurrencyRateMapper
     private lateinit var errorMessageResolver: FakeErrorMessageResolver
 
     @Before
     fun beforeEach() {
         cryptoCurrenciesRepository = FakeCryptoCurrenciesRepository()
+        baseCurrencyRepository = FakeBaseCurrencyRepository()
         cryptoCurrencyRateMapper = FakeCryptoCurrencyRateMapper()
         errorMessageResolver = FakeErrorMessageResolver()
-        viewModel = CryptoCurrencyListViewModel(cryptoCurrenciesRepository, cryptoCurrencyRateMapper, errorMessageResolver)
+        viewModel = CryptoCurrencyListViewModel(cryptoCurrenciesRepository, cryptoCurrencyRateMapper, baseCurrencyRepository, errorMessageResolver)
     }
 
     @Test

@@ -3,12 +3,12 @@ package pl.marekvogt.cryptocurrency.data
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import pl.marekvogt.cryptocurrency.domain.repository.BaseCurrencyRepository
 import pl.marekvogt.cryptocurrency.domain.repository.CryptoCurrenciesCachedRepository
 import javax.inject.Singleton
 
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 @Module
 interface DataModule {
 
